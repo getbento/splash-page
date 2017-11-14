@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- POWERED BY BENTOBOX: http://getbento.com -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}{{ account.site.title }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ account.site.meta_description }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ account.site.meta_keywords }}{% endblock %}">
+    <meta property="og:type" content="restaurant.restaurant">
+
+    {% if account.logo %}
+      <meta property="og:image" content="{{ account.logo|replace(" ", "%20") }}">
+    {% endif %}
+
+    <link rel="icon" href="{{ account.site.favicon }}" />
+
+    {%- if theme.options.style.font %}
+      <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
+      <script>
+        WebFont.load({
+          google: {
+            families: ['{{ theme.options.style.font }}:100,200,300,400,500,600,700,800,900,latin']
+          }
+        });
+      </script>
+    {%- endif %}
+
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh" />
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7521052/7931552/css/fonts.css" />
+    <link rel="stylesheet" href="{{ scss('main.scss') }}" />
+
+    <script src="{{ static('bower_components/modernizr/modernizr.js') }}"></script>
+    <script src="{{ static('js/video.js') }}"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ account.services.google_analytics.tracking_code }}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {{ theme.options.other.head_code|safe }}
+  </head>
+  <body data-video="{{ theme.options.background.video }}">
+    {% block body %}{% endblock %}
+
+    <div id="modal">
+      <div class="modal-container">
+      <form role="form" action="/email_provider_subscribe/">
+
+        <div class="field-wrap">
+          <label for="first_name" class="sr-only">Name</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Name">
+        </div>
+        <div class="field-wrap">
+          <label for="email" class="sr-only">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email*">
+        </div>
+
+        <div class="success">
+          Success! Thank you for signing up.
+          <a href="#" class="button" id="close">Close</a>
+        </div>
+        <div class="error">
+          An error occurred.
+        </div>
+        <a href="#" class="button" id="submit">Submit</a>
+      </form>
+      </div>
+    </div>
+
+    <script src="{{ static('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ static('js/bigvideo.js') }}"></script>
+    <script src="{{ static('js/app.js') }}"></script>
+
+    {{ theme.options.other.scripts|safe }}
+  </body>
+</html>

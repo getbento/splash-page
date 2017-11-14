@@ -1,0 +1,153 @@
+// jinja shortcuts
+{% set typography = theme.options.typography %}
+{% set background = theme.options.background %}
+{% set miscellaneous = theme.options.style %}
+{% set button = theme.options.button %}
+
+// special case: ustom self-hosted fonts...
+{% if custom_fonts and custom_fonts|length > 0 %}
+	{% with selfhosted = custom_fonts|selectattr("fonttype", "equalto", "selfhosted")|list %}
+		// at a minimum the font-family has to exist to proceed...
+		{% for item in selfhosted if item.selfhosted_name %}
+			{% set src1 = [] %}
+			{% set src2 = [] %}
+			{% if item.selfhosted_eot %}
+				{% do src1.append("url(\"" ~ item.selfhosted_eot ~ "\")") %}
+				{% do src2.append("url(\"" ~ item.selfhosted_eot ~ "?#iefix\") format(\"embedded-opentype\")") %}
+			{% endif %}
+			{% if item.selfhosted_woff2 %}{% do src2.append("url(\"" ~ item.selfhosted_woff2 ~ "\") format(\"woff2\")") %}{% endif %}
+			{% if item.selfhosted_woff %}{% do src2.append("url(\"" ~ item.selfhosted_woff ~ "\") format(\"woff\")") %}{% endif %}
+			{% if item.selfhosted_ttf %}{% do src2.append("url(\"" ~ item.selfhosted_ttf ~ "\") format(\"truetype\")") %}{% endif %}
+			{% if item.selfhosted_otf %}{% do src2.append("url(\"" ~ item.selfhosted_otf ~ "\") format(\"opentype\")") %}{% endif %}
+			// at least one font file slot has to be populated to output anything...
+			{% if src1|length > 0 or src2|length > 0 %}
+				@font-face {
+					font-family: "{{ item.selfhosted_name }}";
+					{%- if src1|length > 0 %}src: {{ src1|join(", ") }};{% endif %}
+					{%- if src2|length > 0 %}src: {{ src2|join(", ") }};{% endif %}
+					{%- if item.selfhosted_style %}font-style: {{ item.selfhosted_style }};{% endif %}
+					{%- if item.selfhosted_weight %}font-weight: {{ item.selfhosted_weight }};{% endif %}
+				}
+			{% endif %}
+		{% endfor %}
+	{% endwith %}
+{% endif %}
+
+
+// special cases: these variables require additional scss functions/mixins
+{% if general.overlay_background_color %}
+	$modal-backdrop-bg: rgb(red({{ general.overlay_background_color }}), green({{ general.overlay_background_color }}), blue({{ general.overlay_background_color }})) !default;
+	$modal-backdrop-opacity: opacity({{ general.overlay_background_color }}) !default;
+{% endif %}
+
+// ===============================================
+// Body 
+// ===============================================
+$body-background-color: 			null !default;
+$body-background-image: 			null !default;
+$body-background-full-screen: 		null !default;
+$body-font-family: 					null !default;
+$body-font-size: 					null !default;
+$body-font-weight:					null !default;
+$body-text-transform:				null !default;
+$body-letter-spacing:				null !default;
+$body-text-color:					null !default;
+// ===============================================
+// H1
+// ===============================================
+$h1-font-family: 					null !default;
+$h1-font-size: 						null !default;
+$h1-font-weight:					null !default;
+$h1-text-transform:					null !default;
+$h1-letter-spacing:					null !default;
+$h1-text-color:						null !default;
+// ===============================================
+// H2
+// ===============================================
+$h2-font-family: 					null !default;
+$h2-font-size: 						null !default;
+$h2-font-weight:					null !default;
+$h2-text-transform:					null !default;
+$h2-letter-spacing:					null !default;
+$h2-text-color:						null !default;
+// ===============================================
+// Button
+// ===============================================
+$button-font-family: 				null !default;
+$button-font-size: 					null !default;
+$button-font-weight:				null !default;
+$button-text-transform:				null !default;
+$button-letter-spacing:				null !default;
+$button-text-color:					null !default;
+$button-background-color:			null !default;
+$button-border-color:				null !default;
+$button-border-width:				null !default;
+$button-border-radius:				null !default;
+$button-color-hover:				null !default;
+$button-background-color-hover:		null !default;
+$button-border-color-hover:			null !default;
+// ===============================================
+// Other Styles
+// ===============================================
+$lightbox-text-color:				null !default;
+$link-color:						null !default;
+$link-underline:					null !default;
+$social-link-color:					null !default;
+$social-link-color-hover:			null !default;
+
+
+
+//		SCSS VARIABLE								THEME OPTION 											WRAP AS STRING
+// ===========================================================================================================================
+{% set settables = [
+		("$body-background-color", 					background.color,												false),
+		("$body-background-image",					background.image,												true),
+		("$body-background-full-screen",			("cover" if background.full_screen),							false),
+		("$body-font-size",							typography.body.size, 											false),
+		("$body-font-weight",						typography.body.weight,											false),
+		("$body-text-transform",					("true" if typography.body.uppercase else "false"),				false),
+		("$body-letter-spacing",					typography.body.letter_spacing,									false),
+		("$body-text-color",						typography.body.color,											false),
+		("$h1-font-size",							typography.h1.size, 											false),
+		("$h1-font-weight",							typography.h1.weight,											false),
+		("$h1-text-transform",						("true" if typography.h1.uppercase else "false"),				false),
+		("$h1-letter-spacing",						typography.h1.letter_spacing,									false),
+		("$h1-text-color",							typography.h1.color,											false),
+		("$h2-font-size",							typography.h2.size, 											false),
+		("$h2-font-weight",							typography.h2.weight,											false),
+		("$h2-text-transform",						("true" if typography.h2.uppercase else "false"),				false),
+		("$h2-letter-spacing",						typography.h2.letter_spacing,									false),
+		("$h2-text-color",							typography.h2.color,											false),
+		("$button-font-size", 						button.size,													false),
+		("$button-font-weight",						button.weight,													false),
+		("$button-text-transform",					("true" if button.uppercase else "false"),						false),
+		("$button-letter-spacing",					button.letter_spacing,											false),
+		("$button-text-color",						button.color,													false),
+		("$button-background-color",				button.background_color,										false),
+		("$button-border-color",					button.border_color,											false),
+		("$button-border-width",					button.border_width,											false),
+		("$button-border-radius",					button.radius,													false),
+		("$button-color-hover",						button.color_hover,												false),
+		("$button-background-color-hover",			button.background_color_hover,									false),
+		("$button-border-color-hover",				button.border_color_hover,										false),
+		("$lightbox-text-color",					miscellaneous.lightbox_text_color,								false),
+		("$link-color",								miscellaneous.link_color,										false),
+		("$link-underline",							("underline" if miscellaneous.link_underline else "none"),		false),
+		("$social-link-color",						miscellaneous.social_link_color,								false),
+		("$social-link-color-hover",				miscellaneous.social_link_color_hover,							false)
+	]
+%}
+
+// jinja loop: assigns value to scss variable and optionally wraps as a string.
+{%- for scss, value, stringify in settables %}
+	{%- if value %}
+		{{ scss }}: {{ value if not stringify else ("\"" ~ value|raw_image ~ "\"") }};
+	{%- endif %}
+{%- endfor %}
+
+// We have to run our fonts separately so we can use our bb-get-font-stack() function. We are also using !default
+// just in case our function returns null.
+$body-font-family: 		bb-get-font-stack("{{ typography.body.fontpreset }}"{% if typography.general.font %}, "{{ typography.body.font }}"{% endif %}) !default;
+$h1-font-family: 		bb-get-font-stack("{{ typography.h1.fontpreset }}"{% if typography.general.font %}, "{{ typography.h1.font }}"{% endif %}) !default;
+$h2-font-family: 		bb-get-font-stack("{{ typography.h2.fontpreset }}"{% if typography.general.font %}, "{{ typography.h2.font }}"{% endif %}) !default;
+$button-font-family: 	bb-get-font-stack("{{ button.fontpreset }}"{% if typography.general.font %}, "{{ button.font }}"{% endif %}) !default;

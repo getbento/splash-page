@@ -1,0 +1,4 @@
+node_modules
+sftpCache.json
+*.scssc
+.DS_Store

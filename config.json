@@ -1,0 +1,371 @@
+{
+  "navs": [],
+  "theme": {
+    "name": "Coming Soon",
+    "author": "Will",
+    "fields": {
+      "content": {
+        "title": "Content",
+        "type": "section",
+        "items": {
+          "main": {
+            "title": "Main Content",
+            "type": "wysiwyg"
+          },
+          "footer": {
+            "title": "Footer Content",
+            "type": "wysiwyg"
+          }
+        }
+      },
+      "layout": {
+        "title": "Layout Settings",
+        "type": "section",
+        "items": {
+          "center_content": {
+            "title": "Center Content",
+            "type": "boolean",
+            "default": "True"
+          },
+          "max_width": {
+            "title": "Maximum Container Width",
+            "type": "text",
+            "default": "900px"
+          }
+        }
+      },
+      "typography": {
+        "title": "Type Styles",
+        "type": "section",
+        "items": {
+          "body": {
+            "title": "Body Text Styles",
+            "type": "section",
+            "items": {
+              "fontpreset": {
+                "title": "Font Family",
+                "type": "dropdown",
+                "options": [
+                  "raleway",
+                  "montserrat",
+                  "josefin_sans",
+                  "playfair_display",
+                  "arvo",
+                  "custom"
+                ],
+                "default": "raleway"
+              },
+              "font-custom": {
+                "title": "Custom Font",
+                "type": "text",
+                "display_logic": {
+                  "typography.body.fontpreset": {
+                    "value": "custom"
+                  }
+                }
+              },
+              "size": {
+                "type": "text",
+                "helper": "Please provide value in rem units. (Default: 4rem)"
+              },
+              "weight": {
+                "type": "text",
+                "helper": "Optional. (Default: 700)"
+              },
+              "uppercase": { "type": "boolean", "default": true },
+              "letter_spacing": "text",
+              "color": "color"
+            }
+          },
+          "h1": {
+            "title": "H1 Text Styles",
+            "type": "section",
+            "items": {
+              "fontpreset": {
+                "title": "Font Family",
+                "type": "dropdown",
+                "options": [
+                  "raleway",
+                  "montserrat",
+                  "josefin_sans",
+                  "playfair_display",
+                  "arvo",
+                  "custom"
+                ],
+                "default": "raleway"
+              },
+              "font-custom": {
+                "title": "Custom Font",
+                "type": "text",
+                "display_logic": {
+                  "typography.h1.fontpreset": {
+                    "value": "custom"
+                  }
+                }
+              },
+              "size": {
+                "type": "text",
+                "helper": "Please provide value in rem units. (Default: 4rem)"
+              },
+              "weight": {
+                "type": "text",
+                "helper": "Optional. (Default: 700)"
+              },
+              "uppercase": { "type": "boolean", "default": true },
+              "letter_spacing": "text",
+              "color": "color"
+            }
+          },
+          "h2": {
+            "title": "H2 Text Styles",
+            "type": "section",
+            "items": {
+              "fontpreset": {
+                "title": "Font Family",
+                "type": "dropdown",
+                "options": [
+                  "raleway",
+                  "montserrat",
+                  "josefin_sans",
+                  "playfair_display",
+                  "arvo",
+                  "custom"
+                ],
+                "default": "raleway"
+              },
+              "font-custom": {
+                "title": "Custom Font",
+                "type": "text",
+                "display_logic": {
+                  "typography.h2.fontpreset": {
+                    "value": "custom"
+                  }
+                }
+              },
+              "size": {
+                "type": "text",
+                "helper": "Please provide value in rem units. (Default: 4rem)"
+              },
+              "weight": {
+                "type": "text",
+                "helper": "Optional. (Default: 700)"
+              },
+              "uppercase": { "type": "boolean", "default": true },
+              "letter_spacing": "text",
+              "color": "color"
+            }
+          }
+        }
+      },
+      "background": {
+        "title": "Background Settings",
+        "type": "section",
+        "items": {
+          "color": {
+            "title": "Background Color",
+            "type": "color"
+          },
+          "image": {
+            "title": "Background Image",
+            "type": "file"
+          },
+          "full_screen": {
+            "title": "Full Screen Background Image",
+            "type": "boolean"
+          },
+          "video": {
+            "title": "Background Video",
+            "type": "text"
+          },
+          "vignette": {
+            "title": "Vignette",
+            "type": "boolean"
+          }
+        }
+      },
+      "style": {
+        "title": "Style Settings",
+        "type": "section",
+        "items": {
+          "lightbox_text_color": {
+            "title": "Lightbox Text Color",
+            "type": "color"
+          },
+          "link_color": {
+            "title": "Link Color",
+            "type": "color"
+          },
+          "link_underline": {
+            "title": "Underline Links",
+            "type": "boolean"
+          },
+          "social_link_color": {
+            "title": "Social Link Color",
+            "type": "color"
+          },
+          "social_link_color_hover": {
+            "title": "Social Link Color (Hover)",
+            "type": "color"
+          }
+        }
+      },
+      "button": {
+        "title": "Button Settings",
+        "type": "section",
+        "items": {
+          "text": {
+            "title": "Button Text",
+            "type": "text"
+          },
+          "fontpreset": {
+            "title": "Font Family",
+            "type": "dropdown",
+            "options": [
+              "raleway",
+              "montserrat",
+              "josefin_sans",
+              "playfair_display",
+              "arvo",
+              "custom"
+            ],
+            "default": "raleway"
+          },
+          "font-custom": {
+            "title": "Custom Font",
+            "type": "text",
+            "display_logic": {
+              "typography.button.fontpreset": {
+                "value": "custom"
+              }
+            }
+          },
+          "size": {
+            "type": "text",
+            "helper": "Please provide value in rem units. (Default: 4rem)"
+          },
+          "weight": {
+            "type": "text",
+            "helper": "Optional. (Default: 700)"
+          },
+          "uppercase": { "type": "boolean", "default": true },
+          "letter_spacing": "text",
+          "color": "color",
+          "background_color": {
+            "title": "Background Color",
+            "type": "color"
+          },
+          "border_color": {
+            "title": "Border Color",
+            "type": "color"
+          },
+          "border_width": {
+            "title": "Border Width",
+            "type": "text"
+          },
+          "radius": {
+            "title": "Border Radius",
+            "type": "text"
+          },
+          "color_hover": {
+            "title": "Text Color (Hover)",
+            "type": "color"
+          },
+          "background_color_hover": {
+            "title": "Background Color (Hover)",
+            "type": "color"
+          },
+          "border_color_hover": {
+            "title": "Border Color (Hover)",
+            "type": "color"
+          }
+        }
+      },
+      "other": {
+        "title": "Other Settings",
+        "type": "section",
+        "items": {
+          "head_code": {
+            "title": "Code",
+            "type": "code",
+            "default": ""
+          },
+          "scripts": {
+            "title": "Scripts",
+            "type": "code",
+            "default": ""
+          },
+          "additional_css": {
+            "title": "Additional CSS",
+            "type": "code",
+            "default": ""
+          },
+          "customfonts": {
+            "title": "Custom Fonts",
+            "type": "repeater",
+            "items": {
+              "fonttype": {
+                "title": "Type",
+                "type": "dropdown",
+                "options": [{ "selfhosted": "Self Hosted" }],
+                "default": "selfhosted"
+              },
+              "selfhosted_name": {
+                "title": "Font Family",
+                "type": "text",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_eot": {
+                "title": "EOT",
+                "type": "file",
+                "helper": "Optional. Browser Support: IE6-9",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_woff2": {
+                "title": "WOFF2",
+                "type": "file",
+                "helper":
+                  "Optional. Browser Support: Chrome 36.0+, Firefox 35.0+, Opera 26.0+",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_woff": {
+                "title": "WOFF",
+                "type": "file",
+                "helper":
+                  "Recommended. Browser Support: Chrome 5.0+, IE9+, Firefox 3.6+, Safari 5.1+, Opera 11.1+",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_ttf": {
+                "title": "TTF",
+                "type": "file",
+                "helper":
+                  "Recommended. Browser Support: Chrome 4.0+, IE9+, Firefox, 4.5+, Safari 3.1+, Opera 10.0+, iOS, Android",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_otf": {
+                "title": "OTF",
+                "type": "file",
+                "helper":
+                  "Optional. Browser Support: Chrome 4.0+, IE9+, Firefox, 4.5+, Safari 3.1+, Opera 10.0+",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_style": {
+                "title": "Font Style",
+                "type": "text",
+                "helper":
+                  "Optional. Inaccurate values may cause the font to fail to load. If you are unsure, leave this blank.",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              },
+              "selfhosted_weight": {
+                "title": "Font Weight",
+                "type": "text",
+                "helper":
+                  "Optional. Inaccurate values may cause the font to fail to load. If you are unsure, leave this blank.",
+                "display_logic": { "fonttype": { "value": "selfhosted" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

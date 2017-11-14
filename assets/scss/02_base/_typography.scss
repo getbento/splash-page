@@ -1,0 +1,145 @@
+@font-face {
+	font-family: 'Akkurat-Light';
+	src: url("{{ static('fonts/lineto-akkurat-light.eot') }}");
+	src: url("{{ static('fonts/lineto-akkurat-light.eot') }}?#iefix")
+			format('embedded-opentype'),
+		url("{{ static('fonts/lineto-akkurat-light.woff') }}") format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Boylar';
+	src: url("{{ static('fonts/boylar/302A33_1_0.eot') }}");
+	src: url("{{ static('fonts/boylar/302A33_1_0.eot') }}?#iefix")
+			format('embedded-opentype'),
+		url("{{ static('fonts/boylar/302A33_1_0.woff') }}") format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Clarke';
+	src: url("{{ static('fonts/clarke/clarke_medium_v6.3-webfont.eot') }}");
+	src: url("{{ static('fonts/clarke/clarke_medium_v6.3-webfont.eot') }}?#iefix")
+			format('embedded-opentype'),
+		url("{{ static('fonts/clarke/clarke_medium_v6.3-webfont.woff') }}")
+			format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Beton-Lig';
+	src: url('{{ static('fonts/beton-lig/30C552_0_0.eot') }}');
+	src: url('{{ static('fonts/beton-lig/30C552_0_0.eot?#iefix') }}')
+			format('embedded-opentype'),
+		url('{{ static('fonts/beton-lig/30C552_0_0.woff2') }}') format('woff2'),
+		url('{{ static('fonts/beton-lig/30C552_0_0.woff') }}') format('woff'),
+		url('{{ static('fonts/beton-lig/30C552_0_0.ttf') }}') format('truetype');
+}
+
+@font-face {
+	font-family: 'Apercu-Light';
+	src: url('{{ static('fonts/apercu_light_005.otf') }}') format('opentype');
+}
+
+@font-face {
+	font-family: 'TransatBlack';
+	src: url('{{ static('fonts/transat/transat_black.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_black.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatBlackOblique';
+	src: url('{{ static('fonts/transat/transat_black_oblique.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_black_oblique.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatBold';
+	src: url('{{ static('fonts/transat/transat_bold.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_bold.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatBoldOblique';
+	src: url('{{ static('fonts/transat/transat_bold_oblique.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_bold_oblique.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatLight';
+	src: url('{{ static('fonts/transat/transat_light.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_light.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatLightOblique';
+	src: url('{{ static('fonts/transat/transat_light_oblique.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_light_oblique.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatMedium';
+	src: url('{{ static('fonts/transat/transat_medium.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_medium.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatMediumOblique';
+	src: url('{{ static('fonts/transat/transat_medium_oblique.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_medium_oblique.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatStandard';
+	src: url('{{ static('fonts/transat/transat_standard.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_standard.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'TransatStandardOblique';
+	src: url('{{ static('fonts/transat/transat_standard_oblique.otf') }}')
+		format('opentype');
+	src: url('{{ static('fonts/transat/transat_standard_oblique.ttf') }}')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'Abys-Regular';
+	src: url("{{ static('fonts/abys/abys-regular.otf') }}");
+}
+
+@font-face {
+	font-family: 'GothamRoundBold';
+	src: url("{{ static('fonts/gotham/gothamrnd-bold.otf') }}");
+}
+
+@font-face {
+	font-family: 'GothamRoundItalic';
+	src: url("{{ static('fonts/gotham/gothamrnd-bookital.otf') }}");
+}
+
+@font-face {
+	font-family: 'GothamRoundBook';
+	src: url("{{ static('fonts/gotham/gothamrounded-book.otf') }}");
+}

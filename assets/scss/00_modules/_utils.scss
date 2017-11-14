@@ -1,0 +1,238 @@
+/* @INCLUDE*/
+
+/* ==========================================================================*/
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$monitor-width: 1160px;
+$big: 1280px;
+$mobile-small: 667px;
+
+@mixin mobile_small {
+    @media (max-height: #{$mobile-small}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$tablet-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin non-mobile {
+    @media (min-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin small_screen {
+    @media (min-width: #{$desktop-width}) and (max-width: #{$monitor-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin monitor {
+    @media (min-width: #{$monitor-width}) {
+        @content;
+    }
+}
+
+@mixin big_screen {
+    @media (max-width: #{$big}) {
+        @content;
+    }
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin filter($filter) {
+    filter: $filter;
+    -webkit-filter: $filter;
+}
+
+@mixin border-image($border...) {
+    -webkit-border-image: $border;
+    -moz-border-image: $border;
+    -o-border-image: $border;
+    border-image: $border;
+}
+
+@mixin transform($transform) {
+    transform: $transform;
+    -ms-transform: $transform;
+    -webkit-transform: $transform;
+}
+
+@mixin transform-origin($origin) {
+    -ms-transform-origin: $origin; /* IE 9 */
+    -webkit-transform-origin: $origin; /* Chrome, Safari, Opera */
+    transform-origin: $origin;
+}
+
+@mixin user-select($selection) {
+    -webkit-touch-callout: $selection;
+    -webkit-user-select: $selection;
+    -khtml-user-select: $selection;
+    -moz-user-select: $selection;
+    -ms-user-select: $selection;
+    user-select: $selection;
+}
+
+@mixin box-shadow($shadow...) {
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin animation-delay($delay) {
+    -webkit-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+@mixin transition-timing($timing) {
+    -webkit-transition-timing-function: $timing; /* Safari and Chrome */
+    transition-timing-function: $timing;
+}
+
+@mixin gradient($gradients...) {
+    background: -webkit-linear-gradient($gradients); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($gradients); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($gradients); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($gradients); /* Standard syntax */
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); /*IE8*/
+}
+
+@mixin appearance($appearance) {
+    -webkit-appearance: $appearance;
+    -moz-appearance: $appearance;
+    appearance: $appearance;
+}
+
+/* REM w/ Pixel Fallback (IE8 and below)*/
+
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+/* @EXTEND*/
+
+/* ==========================================================================*/
+
+%clearfix {
+    *zoom: 1;
+
+    &:before,
+    &:after {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+%visuallyhidden {
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+%rotate {
+    @include keyframes(rotate) {
+        from {
+            @include transform(rotate(0deg));
+        }
+
+        to {
+            @include transform(rotate(360deg));
+        }
+    }
+    @include animation('rotate 5s linear infinite');
+    @include transform-origin(center);
+}
+
+%dots {
+    @include keyframes(dots) {
+        0% {
+            content: '';
+        }
+
+        33% {
+            content: '.';
+        }
+
+        66% {
+            content: '..';
+        }
+
+        100% {
+            content: '...';
+        }
+    }
+    @include animation('dots 2s linear infinite');
+}

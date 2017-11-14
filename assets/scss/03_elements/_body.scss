@@ -1,0 +1,48 @@
+body{
+	background-color: 		$body-background-color;
+	//background-color:		{{theme.options.background.color}};
+	background-image: 		url($body-background-image);
+	background-position:	center;
+	background-size:		$body-background-full-screen;
+	font-family:			$body-font-family;
+	font-size: 				$body-font-size;
+	font-weight: 			$body-font-weight;
+	text-transform: 		$body-text-transform;
+	letter-spacing: 		$body-letter-spacing;
+	color: 					$body-text-color;
+	&.vertical-align{
+		// display .container vertically aligned within body
+		$ALIGNMENT: center;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: $ALIGNMENT;
+		-webkit-align-items: $ALIGNMENT;
+		-ms-flex-align: $ALIGNMENT;
+		align-items: $ALIGNMENT;
+		-webkit-box-pack: $ALIGNMENT;
+		-webkit-justify-content: $ALIGNMENT;
+		-ms-flex-pack: $ALIGNMENT;
+		justify-content: $ALIGNMENT;
+	}
+
+	&:after{
+		content:"";
+		display:block;
+		clear:both;
+	}
+
+	{% if theme.options.background.vignette %}
+		&:before {
+			content:"";
+			display:block;
+			width:100%;
+			height:100%;
+			pointer-events: none;
+			position:fixed;
+			z-index:1;
+			box-shadow: 0 0 70px 0 rgba(0,0,0,.3) inset;
+		}
+	{% endif %}
+}

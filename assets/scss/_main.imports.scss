@@ -1,0 +1,20 @@
+// Important: Every @import that does not export anything goes in this file. The reason for this we want all
+// of our variables and mixiins accessible and parsed before we export anything. Although this requires a
+// little more initial setup, it is vastly more flexible. For example, by separating things this way, if we
+// wanted to we can have access to all Bootstrap variables and mixins without including a single Bootstrap class.
+
+// VARIABLE IMPORT ORDER
+@import './00_modules/functions';
+@import './00_modules/variables';
+@import './00_modules/utils';
+
+@import './02_base/typography';
+
+@import './03_elements/body';
+@import './03_elements/h1';
+@import './03_elements/h2';
+@import './03_elements/button';
+
+@import './04_components/modal';
+
+@import './05_layouts/container';

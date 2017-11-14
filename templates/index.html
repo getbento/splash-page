@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container">
+    <header>
+      {% if account.logo %}
+        <img src="{{ account.logo }}" alt="{{ account.site.title }}">
+      {% else %}
+        {{ account.site.title }}
+      {% endif %}
+    </header>
+    <main>
+      {{ theme.options.content.main }}
+      <nav>
+        {% set is_social_circle = theme.options.style.social_circle %}
+        {% if account.services.twitter %}
+          <a class="socicon-twitter" target="_blank" href="{{ account.services.twitter.url }}"/>
+        {% endif %}
+        {% if account.services.facebook %}
+          <a class="socicon-facebook" target="_blank" href="{{ account.services.facebook.url }}"/>
+        {% endif %}
+        {% if account.services.instagram %}
+          <a class="socicon-instagram" target="_blank" href="{{ account.services.instagram.url }}"/>
+        {% endif %}
+        {% if account.services.tripadvisor %}
+          <a class="socicon-tripadvisor" target="_blank" href="{{ account.services.tripadvisor.url }}"/>
+        {% endif %}
+        {% if account.services.foursquare %}
+          <a class="socicon-foursquare" target="_blank" href="{{ account.services.foursquare.url }}"/>
+        {% endif %}
+        {% if account.services.yelp %}
+          <a class="socicon-yelp" target="_blank" href="{{ account.services.yelp.url }}"/>
+        {% endif %}
+        {% if account.services.google_plus %}
+          <a class="socicon-googleplus" target="_blank" href="{{ account.services.google_plus.url }}"/>
+        {% endif %}
+        {% if account.services.social_icon_email_address %}
+           <a class="ss-email" target="_blank" href="mailto:{{ account.services.social_icon_email_address.url }}">Email</a>
+        {% endif %}
+      </nav>
+
+      {% if theme.options.button.text and account.newsletter %}
+        <a id="open-modal" class="button" href="#">
+          {{ theme.options.button.text }}
+        </a>
+      {% endif %}
+    </main>
+    <footer>
+    {{ theme.options.content.footer }}
+    </footer>
+  </div>
+{% endblock %}
