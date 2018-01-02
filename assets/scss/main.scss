@@ -21,9 +21,11 @@ $font-stack-presets: (
 // @param  {String}   $custom_font      The "font" field value in the CMS.
 // @return {CSS} 						The font stack to be used in any font-family:.
 @function bb-get-font-stack($key, $custom_font: null){
+	// Check if font is within the font-stack
 	@if map-has-key($font-stack-presets, $key) {
 		@return map-get($font-stack-presets, $key);
 	}
+	// Check if font is custom
 	@else if $key == "custom" and $custom_font {
 		@return $custom_font;
 	}

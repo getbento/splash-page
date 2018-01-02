@@ -17,19 +17,20 @@ button {
 }
 
 a.button {
+	font-family: $button-font-family;
 	text-align: center;
-	text-decoration: none;
+	text-decoration: none !important;
 	display: inline-block;
 	margin: 16px 0;
 	padding: 7px 20px;
-	color: $button-text-color;
+	color: $button-text-color !important;
 	background: $button-background-color;
 	border: $button-border-width solid $button-border-color;
 	border-radius: $button-border-radius;
 	transition: all 0.2s;
 
 	&:hover {
-		color: $button-color-hover;
+		color: $button-color-hover !important;
 		background: $button-background-color-hover;
 		border-color: $button-border-color-hover;
 	}

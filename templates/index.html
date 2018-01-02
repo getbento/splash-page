@@ -6,7 +6,7 @@
       {% if account.logo %}
         <img src="{{ account.logo }}" alt="{{ account.site.title }}">
       {% else %}
-        {{ account.site.title }}
+        <h1>{{ account.site.title }}</h1>
       {% endif %}
     </header>
     <main>
@@ -39,8 +39,14 @@
         {% endif %}
       </nav>
 
-      {% if theme.options.button.text and account.newsletter %}
-        <a id="open-modal" class="button" href="#">
+      {#- @WILL: add `and account.newsletter` back in afterwards -#}
+      {% if theme.options.button.text %}
+        <a
+          id="open-modal"
+          class="button"
+          href="#"
+          style="{% if theme.options.button.uppercase %}text-transform: uppercase;{% endif %}"
+        >
           {{ theme.options.button.text }}
         </a>
       {% endif %}

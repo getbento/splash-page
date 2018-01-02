@@ -91,6 +91,7 @@ $button-border-color-hover:			null !default;
 // ===============================================
 $lightbox-text-color:				null !default;
 $link-color:						null !default;
+$link-color-hover:					null !default;
 $link-underline:					null !default;
 $social-link-color:					null !default;
 $social-link-color-hover:			null !default;
@@ -132,6 +133,7 @@ $social-link-color-hover:			null !default;
 		("$button-border-color-hover",				button.border_color_hover,										false),
 		("$lightbox-text-color",					miscellaneous.lightbox_text_color,								false),
 		("$link-color",								miscellaneous.link_color,										false),
+		("$link-color-hover",						miscellaneous.link_color_hover,									false),
 		("$link-underline",							("underline" if miscellaneous.link_underline else "none"),		false),
 		("$social-link-color",						miscellaneous.social_link_color,								false),
 		("$social-link-color-hover",				miscellaneous.social_link_color_hover,							false)
@@ -147,7 +149,7 @@ $social-link-color-hover:			null !default;
 
 // We have to run our fonts separately so we can use our bb-get-font-stack() function. We are also using !default
 // just in case our function returns null.
-$body-font-family: 		bb-get-font-stack("{{ typography.body.fontpreset }}"{% if typography.general.font %}, "{{ typography.body.font }}"{% endif %}) !default;
-$h1-font-family: 		bb-get-font-stack("{{ typography.h1.fontpreset }}"{% if typography.general.font %}, "{{ typography.h1.font }}"{% endif %}) !default;
-$h2-font-family: 		bb-get-font-stack("{{ typography.h2.fontpreset }}"{% if typography.general.font %}, "{{ typography.h2.font }}"{% endif %}) !default;
-$button-font-family: 	bb-get-font-stack("{{ button.fontpreset }}"{% if typography.general.font %}, "{{ button.font }}"{% endif %}) !default;
+$body-font-family: 		bb-get-font-stack("{{ typography.body.fontpreset }}","{{ typography.body['font-custom'] }}") !default;
+$h1-font-family: 		bb-get-font-stack("{{ typography.h1.fontpreset }}","{{ typography.h1['font-custom'] }}") !default;
+$h2-font-family: 		bb-get-font-stack("{{ typography.h2.fontpreset }}","{{ typography.h2['font-custom'] }}") !default;
+$button-font-family: 	bb-get-font-stack("{{ button.fontpreset }}","{{ button['font-custom'] }}") !default;

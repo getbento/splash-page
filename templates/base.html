@@ -70,7 +70,14 @@
         <div class="error">
           An error occurred.
         </div>
-        <a href="#" class="button" id="submit">Submit</a>
+        <a 
+          href="#"
+          class="button"
+          id="submit"
+          style="{% if theme.options.button.uppercase %}text-transform: uppercase;{% endif %}"
+        >
+          Submit
+        </a>
       </form>
       </div>
     </div>

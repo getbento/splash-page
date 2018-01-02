@@ -195,6 +195,10 @@
             "title": "Link Color",
             "type": "color"
           },
+          "link_color_hover": {
+            "title": "Link Color (Hover)",
+            "type": "color"
+          },
           "link_underline": {
             "title": "Underline Links",
             "type": "boolean"
@@ -234,7 +238,7 @@
             "title": "Custom Font",
             "type": "text",
             "display_logic": {
-              "typography.button.fontpreset": {
+              "button.fontpreset": {
                 "value": "custom"
               }
             }

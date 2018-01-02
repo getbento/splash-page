@@ -10,7 +10,7 @@
 	padding:40px;
 	//padding: 0 40px;
 	{% if theme.options.layout.max_width %}
-		max-width: {{ theme.options.layout.max_width }} + 80;
+		max-width: {{ theme.options.layout.max_width }};
 	{% endif %}
 	{% if theme.options.layout.center_content %}
 		margin-left:auto;
@@ -21,6 +21,9 @@
 	a {
 		color: $link-color;
 		text-decoration:$link-underline;
+		&:hover {
+			color:$link-color-hover;
+		}
 	}
 
 	header {
@@ -42,11 +45,12 @@
 			font-size: 24px;
 		 	font-family: "SSSocialRegular";
 		 	a {
+		 		text-decoration: none;
 		 		margin: 6px;
 		 		color: $social-link-color;
 		 		transition: color .2s;
 		 		&:hover {
-		 			color: $social-link-color-hover;
+		 			color: $social-link-color-hover !important;
 		 		}
 		 	}
 		}
