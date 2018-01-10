@@ -3,8 +3,9 @@
 {% set background = theme.options.background %}
 {% set miscellaneous = theme.options.style %}
 {% set button = theme.options.button %}
+{% set custom_fonts = theme.options.other.customfonts %}
 
-// special case: ustom self-hosted fonts...
+// special case: custom self-hosted fonts...
 {% if custom_fonts and custom_fonts|length > 0 %}
 	{% with selfhosted = custom_fonts|selectattr("fonttype", "equalto", "selfhosted")|list %}
 		// at a minimum the font-family has to exist to proceed...
