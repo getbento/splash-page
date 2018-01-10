@@ -310,8 +310,32 @@
               "fonttype": {
                 "title": "Type",
                 "type": "dropdown",
-                "options": [{ "selfhosted": "Self Hosted" }],
+                "options": [
+                  "google",
+                  "typekit",
+                  { "fontscom": "Fonts.com" },
+                  { "selfhosted": "Self Hosted" }
+                ],
                 "default": "selfhosted"
+              },
+              "googlefamilies": {
+                "title": "Google Font Reference",
+                "type": "text",
+                "display_logic": { "fonttype": { "value": "google" } },
+                "helper":
+                  "Instructions: https://bentobox.zendesk.com/hc/en-us/articles/220056727"
+              },
+              "typekitid": {
+                "title": "Typekit ID",
+                "type": "text",
+                "display_logic": { "fonttype": { "value": "typekit" } },
+                "helper":
+                  "For more information: http://help.getbento.com/hc/en-us/articles/225272828"
+              },
+              "fontscomid": {
+                "title": "Fonts.com Project ID",
+                "type": "text",
+                "display_logic": { "fonttype": { "value": "fontscom" } }
               },
               "selfhosted_name": {
                 "title": "Font Family",

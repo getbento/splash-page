@@ -1,5 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
+  {% import "_macros/_utils.html" as bbUtils with context %}
+
   <head>
     <!-- POWERED BY BENTOBOX: http://getbento.com -->
     <meta charset="utf-8" />
@@ -16,16 +19,73 @@
 
     <link rel="icon" href="{{ account.site.favicon }}" />
 
-    {%- if theme.options.style.font %}
-      <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
-      <script>
-        WebFont.load({
-          google: {
-            families: ['{{ theme.options.style.font }}:100,200,300,400,500,600,700,800,900,latin']
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    {% with -%}
+      <script type="text/javascript">
+        {% set google_fonts = [] -%}
+        {%- set font_presets = {
+            "raleway": "\"Raleway:400,700:latin\"",
+            "montserrat": "\"Montserrat::latin\"",
+            "josefin_sans": "\"Josefin+Sans::latin\"",
+            "playfair_display": "\"Playfair+Display:400,700,900:latin\"",
+            "arvo": "\"Arvo::latin\""
           }
+        -%}
+        {%- set theme_fonts = [theme.options.typography.body, theme.options.typography.h1, theme.options.button] -%}
+        {%- if theme.options.typography.h2.fontpreset -%}
+          {%- do theme_fonts.append(theme.options.typography.h2) -%}
+        {%- endif -%}
+        {%- if theme.options.footer.nav.fontpreset -%}
+          {%- do theme_fonts.append(theme.options.footer.nav) -%}
+        {%- endif -%}
+
+        {%- for group in theme_fonts|groupby("fontpreset") -%}
+          {%- if font_presets[group.grouper] -%}{%- do google_fonts.append(font_presets[group.grouper]) -%}{%- endif -%}
+        {%- endfor -%}
+
+        WebFont.load({
+          {%- set comma = joiner(", ") -%}
+          {%- if theme.options.other.customfonts and theme.options.other.customfonts|length > 0 %}
+            {%- for group in theme.options.other.customfonts|groupby("fonttype") %}
+              {%- if group.grouper == "typekit" and group.list|length > 0 and group.list[0].typekitid %}
+                {{ comma() }}typekit: { id : "{{ group.list[0].typekitid }}" }
+              {%- elif group.grouper == "fontscom" and group.list|length > 0 and group.list[0].fontscomid %}
+                {{ comma() }}monotype: { projectId : "{{ group.list[0].fontscomid }}" }
+              {%- elif group.grouper == "fontdeck" and group.list|length > 0 and group.list[0].fontdeckid %}
+                {{ comma() }}fontdeck: { id : "{{ group.list[0].fontdeckid }}" }
+              {%- elif group.grouper == "selfhosted" and group.list|length > 0 %}
+                {%- set selfhosted_fonts = [] %}
+                {%- for item in group.list %}
+                  {% if item.selfhosted_name %}
+                    {% do selfhosted_fonts.append("\"" ~ item.selfhosted_name ~ "\"") %}
+                  {% endif %}
+                {% endfor %}
+                {%- if selfhosted_fonts|length > 0 %}
+                  {{ comma() }}custom: { families: [{{ selfhosted_fonts|join(", ") }}] }
+                {% endif %}
+              {%- elif group.grouper == "google" %}
+                {%- for item in group.list if item.googlefamilies %}
+                  {%- do bbUtils.normalize_custom_google_font(item.googlefamilies, google_fonts) -%}
+                {%- endfor %}
+              {%- endif %}
+            {%- endfor %}
+          {%- endif -%}
+          {%- if google_fonts|length > 0 %}
+            {{ comma() }}google: { families: [{{ google_fonts|join(", ") }}] }
+          {% endif -%}
         });
       </script>
-    {%- endif %}
+      {%- if google_fonts|length > 0 %}
+        <noscript>
+            <style type="text/css">
+              {# note: this method will only work with google fonts, but will not work correctly if multiple fonts are adding to a single field because
+                we cannot strip a comma followed by a space in jinja (ie...Raleway::latin|Oswald::latin, Raleway:400,600:latin) -#}
+                {%- set googlequery = google_fonts|join("|")|replace("\"", "")|replace("'", "")|replace(", ", "") -%}
+                <link href="https://fonts.googleapis.com/css?family={{ googlequery }}" rel="stylesheet" type="text/css">
+            </style>
+        </noscript>
+      {%- endif %}
+    {% endwith -%}
 
     <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh" />
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7521052/7931552/css/fonts.css" />
