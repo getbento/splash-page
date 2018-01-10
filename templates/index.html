@@ -39,8 +39,7 @@
         {% endif %}
       </nav>
 
-      {#- @WILL: add `and account.newsletter` back in afterwards -#}
-      {% if theme.options.button.text %}
+      {% if theme.options.button.text and account.newsletter %}
         <a
           id="open-modal"
           class="button"
