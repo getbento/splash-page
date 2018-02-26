@@ -1,10 +1,13 @@
 // If `.container` is smaller than the window height then
 // we want to veritcally align it
-const shouldVerticalAlignContent = () => {
-    const contentHeight = $('.container').outerHeight();
-    const windowHeight = window.innerHeight;
-    if (windowHeight > contentHeight) $('body').addClass('vertical-align');
-    else $('body').removeClass('vertical-align');
+var shouldVerticalAlignContent = function() {
+    var contentHeight = $('.container').outerHeight();
+    var windowHeight = window.innerHeight;
+    if (windowHeight > contentHeight) {
+        $('body').addClass('vertical-align');
+    } else {
+        $('body').removeClass('vertical-align');
+    }
 };
 
 $(document).ready(function() {
@@ -61,4 +64,4 @@ $(document).ready(function() {
     shouldVerticalAlignContent();
 });
 
-$(window, document).resize(() => shouldVerticalAlignContent());
+$(window, document).resize(shouldVerticalAlignContent);
