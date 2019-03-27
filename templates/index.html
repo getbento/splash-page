@@ -14,28 +14,44 @@
       <nav>
         {% set is_social_circle = theme.options.style.social_circle %}
         {% if account.services.twitter and account.services.twitter.url %}
-        <a class="socicon-twitter" title="twitter" target="_blank" href="{{ account.services.twitter.url }}"></a>
+        <a class="socicon-twitter" title="twitter" target="_blank" rel="noopener" href="{{ account.services.twitter.url }}">
+          <span class="sr-only">Twitter</span>
+        </a>
         {% endif %}
         {% if account.services.facebook and account.services.facebook.url %}
-          <a class="socicon-facebook" title="facebook" target="_blank" href="{{ account.services.facebook.url }}"></a>
+          <a class="socicon-facebook" title="facebook" target="_blank" rel="noopener" href="{{ account.services.facebook.url }}">
+            <span class="sr-only">Facebook</span>
+          </a>
         {% endif %}
         {% if account.services.instagram and account.services.instagram.url %}
-          <a class="socicon-instagram" title="instagram" target="_blank" href="{{ account.services.instagram.url }}"></a>
+          <a class="socicon-instagram" title="instagram" target="_blank" rel="noopener" href="{{ account.services.instagram.url }}">
+            <span class="sr-only">Instagram</span>
+          </a>
         {% endif %}
         {% if account.services.tripadvisor and account.services.tripadvisor.url %}
-          <a class="socicon-tripadvisor" title="tripadvisor" target="_blank" href="{{ account.services.tripadvisor.url }}"></a>
+          <a class="socicon-tripadvisor" title="tripadvisor" target="_blank" rel="noopener" href="{{ account.services.tripadvisor.url }}">
+            <span class="sr-only">Trip Advisor</span>
+          </a>
         {% endif %}
         {% if account.services.foursquare and account.services.foursquare.url %}
-          <a class="socicon-foursquare" title="foursquare" target="_blank" href="{{ account.services.foursquare.url }}"></a>
+          <a class="socicon-foursquare" title="foursquare" target="_blank" rel="noopener" href="{{ account.services.foursquare.url }}">
+            <span class="sr-only">Four Square</span>
+          </a>
         {% endif %}
         {% if account.services.yelp and account.services.yelp.url %}
-          <a class="socicon-yelp" title="yelp" target="_blank" href="{{ account.services.yelp.url }}"></a>
+          <a class="socicon-yelp" title="yelp" target="_blank" rel="noopener" href="{{ account.services.yelp.url }}">
+            <span class="sr-only">Yelp</span>
+          </a>
         {% endif %}
         {% if account.services.google_plus and account.services.google_plus.url %}
-          <a class="socicon-googleplus" title="google plus" target="_blank" href="{{ account.services.google_plus.url }}"></a>
+          <a class="socicon-googleplus" title="google plus" target="_blank" rel="noopener" href="{{ account.services.google_plus.url }}">
+            <span class="sr-only">Google Plus</span>
+          </a>
         {% endif %}
         {% if account.services.social_icon_email_address and account.services.social_icon_email_address.url %}
-           <a class="socicon-mail" target="_blank" title="email" href="mailto:{{ account.services.social_icon_email_address.url }}">Email</a>
+           <a class="socicon-mail" target="_blank" rel="noopener" title="email" href="mailto:{{ account.services.social_icon_email_address.url }}">
+             <span class="sr-only">Email</span>
+            </a>
         {% endif %}
       </nav>
 
