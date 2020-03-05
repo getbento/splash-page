@@ -114,6 +114,12 @@
       <div class="modal-container">
       <form role="form" action="/email_provider_subscribe/">
 
+        <div style="display: none;">
+          <label>leave this field blank
+            <input type="text" name="comment_body" value="" />
+          </label>
+        </div>
+
         <div class="field-wrap">
           <label for="first_name" class="sr-only">Name</label>
           <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Name">
@@ -130,7 +136,7 @@
         <div class="error">
           An error occurred.
         </div>
-        <a 
+        <a
           href="#"
           class="button"
           id="submit"
