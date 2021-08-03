@@ -58,7 +58,6 @@ $(document).ready(function() {
                         $(e.target).fadeOut(function() {
                             $form.find('.success').fadeIn();
                         });
-                        console.log(csrfToken);
                     }
                 })
             },
