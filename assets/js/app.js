@@ -44,14 +44,22 @@ $(document).ready(function() {
         var datastring = $form.serialize();
 
         $.ajax({
-            type: 'POST',
-            url: $form.attr('action'),
-            data: datastring,
-            success: function(data, textStatus) {
-                $form.find('.field-wrap').fadeOut();
-                $(e.target).fadeOut(function() {
-                    $form.find('.success').fadeIn();
-                });
+            type: 'GET',
+            url: 'csrf',
+            contentType: 'application/json',
+            success: function(data) {
+                $.ajax({
+                    type: 'POST',
+                    url: $form.attr('action'),
+                    data: datastring,
+                    headers: {'X-CSRFToken': data.token},
+                    success: function(data, textStatus) {
+                        $form.find('.field-wrap').fadeOut();
+                        $(e.target).fadeOut(function() {
+                            $form.find('.success').fadeIn();
+                        });
+                    }
+                })
             },
             error: function(xhr, status, error) {
                 $form.find('.error').fadeIn();
