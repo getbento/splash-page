@@ -1,0 +1,14 @@
+{
+  "name": "Menus",
+  "engine": {
+    "type": "menu",
+    "config": {
+      "layouts": {
+        "two_columns": ["column_one", "column_two"]
+      },
+      "layouts_v2": ["two_columns", "three_columns"]
+    }
+  },
+  "has_featured": true,
+  "has_locations": true
+}
