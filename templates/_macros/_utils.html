@@ -146,3 +146,53 @@
 		{%- endif -%}
 	{%- endif -%}
 {%- endmacro %}
+
+{# ============================================================================
+================== WEBSITE SETTINGS  ==========================================
+============================================================================= #}
+{% set social_attributes = ["facebook", "linkedin", "youtube", "spotify", "instagram", "foursquare", "yelp", "google_plus", "tripadvisor", "pinterest"] %}
+{% set additional_attributes = ["twitter", "social_icon_email_address"] %}
+{% set social_attributes_extended = social_attributes + additional_attributes %}
+
+{% set _account_settings_attributes = {
+      "site_title": account.site.title,
+      "logo": account.logo,
+      "logo_alt_text": account.logo_alt_text,
+      "favicon": account.site.favicon,
+}
+%}
+{% set _website_settings = website.website_settings %}
+
+{#
+      Gets a site attribute of the site by matching the attribute name,
+      it looks in two places: the website settings attached to the website data and the account data
+
+      @access public
+      @param {Strins} attribute 		- The attribute name
+      @returns {String} 				- The value of the site attribute.
+#}
+
+{% macro _get_site_attribute(attribute, social_attribute=False, account_fallback=False) -%}
+      {%- if _website_settings -%}
+            {%- if social_attribute -%}
+                  {%- if account_fallback -%}
+                    {{- (_website_settings.social_urls and _website_settings.social_urls[attribute]) or (account.services and account.services[attribute] and account.services[attribute].url) -}}
+                  {%- else -%}
+                    {{- _website_settings.social_urls and _website_settings.social_urls[attribute] -}}
+                  {%- endif -%}
+            {%- else -%}
+                  {{- _website_settings[attribute] -}}
+            {%- endif -%}
+      {%- else -%}
+            {%- if social_attribute -%}
+                  {{- account.services and account.services[attribute] and account.services[attribute].url -}}
+            {%- else -%}
+                  {{- _account_settings_attributes[attribute] -}}
+            {%- endif -%}
+      {%- endif -%}
+{%- endmacro %}
+
+
+{% macro get_site_attribute(attribute, account_fallback=False) -%}
+	    {{- _get_site_attribute(attribute, (attribute in social_attributes_extended), account_fallback) -}}
+{%- endmacro %}

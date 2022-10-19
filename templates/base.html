@@ -8,16 +8,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{% block title %}{{ account.site.title }}{% endblock %}</title>
+    <title>{% block title %}{{ bbUtils.get_site_attribute('site_title') }}{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{{ account.site.meta_description }}{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}{{ account.site.meta_keywords }}{% endblock %}">
     <meta property="og:type" content="restaurant.restaurant">
 
-    {% if account.logo %}
-      <meta property="og:image" content="{{ account.logo|replace(" ", "%20") }}">
+    {% if bbUtils.get_site_attribute('logo') %}
+      <meta property="og:image" content="{{ bbUtils.get_site_attribute('logo')|replace(" ", "%20") }}">
     {% endif %}
 
-    <link rel="icon" href="{{ account.site.favicon }}" />
+    <link rel="icon" href="{{ bbUtils.get_site_attribute('favicon') }}" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     {% with -%}

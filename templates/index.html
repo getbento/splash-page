@@ -3,10 +3,10 @@
 {% block body %}
   <div class="container">
     <header>
-      {% if account.logo %}
-        <img src="{{ account.logo }}" alt="{{ account.site.title }}">
+      {% if bbUtils.get_site_attribute('logo') %}
+        <img src="{{ bbUtils.get_site_attribute('logo') }}" alt="{{ bbUtils.get_site_attribute('site_title') }}">
       {% else %}
-        <h1>{{ account.site.title }}</h1>
+        <h1>{{ bbUtils.get_site_attribute('site_title') }}</h1>
       {% endif %}
     </header>
     <main>
