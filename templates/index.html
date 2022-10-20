@@ -14,8 +14,9 @@
         {% set is_social_circle = theme.options.style.social_circle %}
        <nav>
         {% for platform in bbUtils.social_icons|map(attribute="key")|list %}
-          {% if bbUtils.get_site_attribute(platform, True) %}
-            <a class="{{ 'fas' if platform == 'social_icon_email_address' else 'fab'}} {{bbUtils.get_social_icon(platform)}}" title="{{platform}}" target="_blank" rel="noopener" href="{{bbUtils.get_site_attribute(platform, True)}}"> <span class="sr-only">{{item.name}}</span></a>
+          {% set social_media_url = bbUtils.get_site_social_attribute(platform) %}
+          {% if social_media_url %}
+            <a class="{{ 'fas' if platform == 'social_icon_email_address' else 'fab'}} {{bbUtils.get_social_icon(platform)}}" title="{{platform}}" target="_blank" rel="noopener" href="{{social_media_url}}"> <span class="sr-only">{{item.name}}</span></a>
           {% endif %}
        {% endfor %}
        </nav>

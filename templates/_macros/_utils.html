@@ -187,7 +187,6 @@
 {# ============================================================================
 ================== WEBSITE SETTINGS  ==========================================
 ============================================================================= #}
-
 {% set _account_settings_attributes = {
       "site_title": account.site.title,
       "logo": account.logo,
@@ -202,34 +201,31 @@
       it looks in two places: the website settings attached to the website data and the account data
 
       @access public
-      @param {String} attribute             - The attribute name
-      @param {Boolean} social_attribute     - Whether or not the attribute is a name of a social platform
-      @param {Boolean} account_fallback     - Whether or not we want to check the account in case the value
-                                              doesn't exists for the website
-      @returns {String} 				- The value of the site attribute.
+      @param {String} attribute     - The attribute name
+      @returns {String}             - The value of the site attribute.
 #}
 
-{% macro _get_site_attribute(attribute, social_attribute=False, account_fallback=False) -%}
+{% macro get_site_attribute(attribute) -%}
       {%- if _website_settings -%}
-            {%- if social_attribute -%}
-                  {%- if account_fallback -%}
-                    {{- (_website_settings.social_urls and _website_settings.social_urls[attribute]) or (account.services and account.services[attribute] and account.services[attribute].url) -}}
-                  {%- else -%}
-                    {{- _website_settings.social_urls and _website_settings.social_urls[attribute] -}}
-                  {%- endif -%}
-            {%- else -%}
-                  {{- _website_settings[attribute] -}}
-            {%- endif -%}
+            {{- _website_settings[attribute] -}}
       {%- else -%}
-            {%- if social_attribute -%}
-                  {{- account.services and account.services[attribute] and account.services[attribute].url -}}
-            {%- else -%}
-                  {{- _account_settings_attributes[attribute] -}}
-            {%- endif -%}
+            {{- _account_settings_attributes[attribute] -}}
       {%- endif -%}
 {%- endmacro %}
 
+{#
+      Gets a site attribute of the site by matching the attribute name,
+      it looks in two places: the website settings social_urls object
+      and the account services object
 
-{% macro get_site_attribute(attribute, account_fallback=False) -%}
-	    {{- _get_site_attribute(attribute, (attribute in social_attributes_extended), account_fallback) -}}
+      @access public
+      @param {String} attribute     - The attribute name
+      @returns {String}             - The value of the site attribute.
+#}
+{% macro get_site_social_attribute(attribute) -%}
+      {%- if _website_settings -%}
+            {{- _website_settings.social_urls and _website_settings.social_urls[attribute] -}}
+      {%- else -%}
+            {{- account.services and account.services[attribute] and account.services[attribute].url -}}
+      {%- endif -%}
 {%- endmacro %}
