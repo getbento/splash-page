@@ -170,6 +170,14 @@
   {"key": "pinterest", "name": "Pinterest", "icon": "fa-pinterest" }
   ]
 -%}
+{#
+      Gets a the icon class by first finding the right dictionary from social_icons list
+      then retrieving the icon property from it.
+
+      @access public
+      @param {Strins} social_key    - The name of the social platform (i.e."instagram")
+      @returns {String}             - The awesome icon class to be applied to the html element.
+#}
 
 {% macro get_social_icon(social_key) -%}
   {%- set item = social_icons|selectattr("key", "equalto", social_key)|first %}
@@ -194,7 +202,10 @@
       it looks in two places: the website settings attached to the website data and the account data
 
       @access public
-      @param {Strins} attribute 		- The attribute name
+      @param {String} attribute             - The attribute name
+      @param {Boolean} social_attribute     - Whether or not the attribute is a name of a social platform
+      @param {Boolean} account_fallback     - Whether or not we want to check the account in case the value
+                                              doesn't exists for the website
       @returns {String} 				- The value of the site attribute.
 #}
 
