@@ -148,11 +148,37 @@
 {%- endmacro %}
 
 {# ============================================================================
-================== WEBSITE SETTINGS  ==========================================
+================== SOCIAL PLATFORMS  ==========================================
 ============================================================================= #}
+
 {% set social_attributes = ["facebook", "linkedin", "youtube", "spotify", "instagram", "foursquare", "yelp", "google_plus", "tripadvisor", "pinterest"] %}
 {% set additional_attributes = ["twitter", "social_icon_email_address"] %}
 {% set social_attributes_extended = social_attributes + additional_attributes %}
+
+{%- set social_icons = [
+  {"key": "twitter", "name": "Twitter", "icon": "fa-twitter-square" },
+  {"key": "facebook", "name": "Facebook", "icon": "fa-facebook-square" },
+  {"key": "instagram", "name": "Instagram", "icon": "fa-instagram" },
+  {"key": "tripadvisor", "name": "TripAdvisor",	"icon": "fa-tripadvisor" },
+  {"key": "foursquare", "name": "Foursquare", "icon": "fa-foursquare" },
+  {"key": "yelp", "name": "Yelp", "icon": "fa-yelp" },
+  {"key": "google_plus", "name": "Google+", "icon": "fa-google-plus-square" },
+  {"key": "social_icon_email_address", "name": "Email",		"icon": "fa-envelope" },
+  {"key": "youtube", "name": "Youtube", "icon": "fa-youtube" },
+  {"key": "spotify", "name": "spotify", "icon": "fa-spotify" },
+  {"key": "linkedin", "name": "LinkedIn", "icon": "fa-linkedin" },
+  {"key": "pinterest", "name": "Pinterest", "icon": "fa-pinterest" }
+  ]
+-%}
+
+{% macro get_social_icon(social_key) -%}
+  {%- set item = social_icons|selectattr("key", "equalto", social_key)|first %}
+  {{- item["icon"] }}
+{%- endmacro %}
+
+{# ============================================================================
+================== WEBSITE SETTINGS  ==========================================
+============================================================================= #}
 
 {% set _account_settings_attributes = {
       "site_title": account.site.title,
