@@ -151,10 +151,6 @@
 ================== SOCIAL PLATFORMS  ==========================================
 ============================================================================= #}
 
-{% set social_attributes = ["facebook", "linkedin", "youtube", "spotify", "instagram", "foursquare", "yelp", "google_plus", "tripadvisor", "pinterest"] %}
-{% set additional_attributes = ["twitter", "social_icon_email_address"] %}
-{% set social_attributes_extended = social_attributes + additional_attributes %}
-
 {%- set social_icons = [
   {"key": "twitter", "name": "Twitter", "icon": "fa-twitter-square" },
   {"key": "facebook", "name": "Facebook", "icon": "fa-facebook-square" },
@@ -175,7 +171,7 @@
       then retrieving the icon property from it.
 
       @access public
-      @param {Strins} social_key    - The name of the social platform (i.e."instagram")
+      @param {String} social_key    - The name of the social platform (i.e."instagram")
       @returns {String}             - The awesome icon class to be applied to the html element.
 #}
 
