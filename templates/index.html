@@ -3,57 +3,23 @@
 {% block body %}
   <div class="container">
     <header>
-      {% if account.logo %}
-        <img src="{{ account.logo }}" alt="{{ account.site.title }}">
+      {% if bbUtils.get_site_attribute('logo') %}
+        <img src="{{ bbUtils.get_site_attribute('logo') }}" alt="{{ bbUtils.get_site_attribute('site_title') }}">
       {% else %}
-        <h1>{{ account.site.title }}</h1>
+        <h1>{{ bbUtils.get_site_attribute('site_title') }}</h1>
       {% endif %}
     </header>
     <main>
       {{ theme.options.content.main }}
-      <nav>
         {% set is_social_circle = theme.options.style.social_circle %}
-        {% if account.services.twitter and account.services.twitter.url %}
-          <a class="fab fa-twitter-square" title="twitter" target="_blank" rel="noopener" href="{{ account.services.twitter.url }}">
-            <span class="sr-only">Twitter</span>
-          </a>
-        {% endif %}
-        {% if account.services.facebook and account.services.facebook.url %}
-          <a class="fab fa-facebook-square" title="facebook" target="_blank" rel="noopener" href="{{ account.services.facebook.url }}">
-            <span class="sr-only">Facebook</span>
-          </a>
-        {% endif %}
-        {% if account.services.instagram and account.services.instagram.url %}
-          <a class="fab fa-instagram" title="instagram" target="_blank" rel="noopener" href="{{ account.services.instagram.url }}">
-            <span class="sr-only">Instagram</span>
-          </a>
-        {% endif %}
-        {% if account.services.tripadvisor and account.services.tripadvisor.url %}
-          <a class="fab fa-tripadvisor" title="tripadvisor" target="_blank" rel="noopener" href="{{ account.services.tripadvisor.url }}">
-            <span class="sr-only">Trip Advisor</span>
-          </a>
-        {% endif %}
-        {% if account.services.foursquare and account.services.foursquare.url %}
-          <a class="fab fa-foursquare" title="foursquare" target="_blank" rel="noopener" href="{{ account.services.foursquare.url }}">
-            <span class="sr-only">Four Square</span>
-          </a>
-        {% endif %}
-        {% if account.services.yelp and account.services.yelp.url %}
-          <a class="fab fa-yelp" title="yelp" target="_blank" rel="noopener" href="{{ account.services.yelp.url }}">
-            <span class="sr-only">Yelp</span>
-          </a>
-        {% endif %}
-        {% if account.services.google_plus and account.services.google_plus.url %}
-          <a class="fab fa-google-plus-square" title="google plus" target="_blank" rel="noopener" href="{{ account.services.google_plus.url }}">
-            <span class="sr-only">Google Plus</span>
-          </a>
-        {% endif %}
-        {% if account.services.social_icon_email_address and account.services.social_icon_email_address.url %}
-           <a class="fas fa-envelope" target="_blank" rel="noopener" title="email" href="mailto:{{ account.services.social_icon_email_address.url }}">
-            <span class="sr-only">Email</span>
-          </a>
-        {% endif %}
-      </nav>
+       <nav>
+        {% for platform in bbUtils.social_icons|map(attribute="key")|list %}
+          {% set social_media_url = bbUtils.get_site_social_attribute(platform) %}
+          {% if social_media_url %}
+            <a class="{{ 'fas' if platform == 'social_icon_email_address' else 'fab'}} {{bbUtils.get_social_icon(platform)}}" title="{{platform}}" target="_blank" rel="noopener" href="{{social_media_url}}"> <span class="sr-only">{{item.name}}</span></a>
+          {% endif %}
+       {% endfor %}
+       </nav>
 
       {% if theme.options.button.text and account.newsletter %}
         <a

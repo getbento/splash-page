@@ -146,3 +146,82 @@
 		{%- endif -%}
 	{%- endif -%}
 {%- endmacro %}
+
+{# ============================================================================
+================== SOCIAL PLATFORMS  ==========================================
+============================================================================= #}
+
+{%- set social_icons = [
+  {"key": "twitter", "name": "Twitter", "icon": "fa-twitter-square" },
+  {"key": "facebook", "name": "Facebook", "icon": "fa-facebook-square" },
+  {"key": "instagram", "name": "Instagram", "icon": "fa-instagram" },
+  {"key": "tripadvisor", "name": "TripAdvisor",	"icon": "fa-tripadvisor" },
+  {"key": "foursquare", "name": "Foursquare", "icon": "fa-foursquare" },
+  {"key": "yelp", "name": "Yelp", "icon": "fa-yelp" },
+  {"key": "google_plus", "name": "Google+", "icon": "fa-google-plus-square" },
+  {"key": "social_icon_email_address", "name": "Email",		"icon": "fa-envelope" },
+  {"key": "youtube", "name": "Youtube", "icon": "fa-youtube" },
+  {"key": "spotify", "name": "spotify", "icon": "fa-spotify" },
+  {"key": "linkedin", "name": "LinkedIn", "icon": "fa-linkedin" },
+  {"key": "pinterest", "name": "Pinterest", "icon": "fa-pinterest" }
+  ]
+-%}
+{#
+      Gets a the icon class by first finding the right dictionary from social_icons list
+      then retrieving the icon property from it.
+
+      @access public
+      @param {String} social_key    - The name of the social platform (i.e."instagram")
+      @returns {String}             - The awesome icon class to be applied to the html element.
+#}
+
+{% macro get_social_icon(social_key) -%}
+  {%- set item = social_icons|selectattr("key", "equalto", social_key)|first %}
+  {{- item["icon"] }}
+{%- endmacro %}
+
+{# ============================================================================
+================== WEBSITE SETTINGS  ==========================================
+============================================================================= #}
+{% set _account_settings_attributes = {
+      "site_title": account.site.title,
+      "logo": account.logo,
+      "logo_alt_text": account.logo_alt_text,
+      "favicon": account.site.favicon,
+}
+%}
+{% set _website_settings = website.website_settings %}
+
+{#
+      Gets a site attribute of the site by matching the attribute name,
+      it looks in two places: the website settings attached to the website data and the account data
+
+      @access public
+      @param {String} attribute     - The attribute name
+      @returns {String}             - The value of the site attribute.
+#}
+
+{% macro get_site_attribute(attribute) -%}
+      {%- if _website_settings -%}
+            {{- _website_settings[attribute] -}}
+      {%- else -%}
+            {{- _account_settings_attributes[attribute] -}}
+      {%- endif -%}
+{%- endmacro %}
+
+{#
+      Gets a site attribute of the site by matching the attribute name,
+      it looks in two places: the website settings social_urls object
+      and the account services object
+
+      @access public
+      @param {String} attribute     - The attribute name
+      @returns {String}             - The value of the site attribute.
+#}
+{% macro get_site_social_attribute(attribute) -%}
+      {%- if _website_settings -%}
+            {{- _website_settings.social_urls and _website_settings.social_urls[attribute] -}}
+      {%- else -%}
+            {{- account.services and account.services[attribute] and account.services[attribute].url -}}
+      {%- endif -%}
+{%- endmacro %}
