@@ -15,8 +15,8 @@ $(document).ready(function() {
         navigator.userAgent
     );
 
-    if (!isTouch && $('body').attr('data-video').length) {
-        BV = new $.BigVideo({ forceAutoplay: isTouch });
+    if ($('body').attr('data-video').length) {
+        BV = new $.BigVideo({ forceAutoplay: isTouch, useFlashForFirefox: false });
         BV.init();
         BV.show($('body').attr('data-video'), { ambient: true });
         BV.getPlayer().on('durationchange', function() {
