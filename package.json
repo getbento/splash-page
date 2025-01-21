@@ -6,14 +6,6 @@
     "type": "git",
     "url": "http://github.com/getbento/bentobox.git"
   },
-  "devDependencies": {
-    "grunt": "^1.6.1",
-    "grunt-contrib-concat": "^2.1.0",
-    "grunt-contrib-sass": "^2.0.0",
-    "grunt-contrib-uglify": "^5.2.2",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-sftp-deploy": "^0.2.5"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1"
   }
