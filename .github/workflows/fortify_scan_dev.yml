@@ -1,0 +1,31 @@
+name: Fortify Scan - Dev
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run Wednesdays at 10:45 AM UTC
+    - cron: '45 10 * * 3'
+
+jobs:
+  fortify-scan:
+    runs-on: ['self-hosted', '${{ github.run_id }}', 'fortify-scan']
+
+    steps:
+      - name: Checkout bentobox-github-ci
+        uses: actions/checkout@v4
+        with:
+          path: bentobox-github-ci
+          ref: main
+          repository: getbento/bentobox-github-ci
+          token: ${{ secrets.GH_ACTIONS_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Run FOD scan action
+        uses: ./bentobox-github-ci/.github/actions/fortify-scan-dev
+        with:
+          server_url: ${{ github.server_url }}
+          repository: ${{ github.repository }}
+          run_id: ${{ github.run_id }}
+          FOD_SLACK_WORKFLOW_WEBHOOK_URL: ${{ secrets.FOD_SLACK_WORKFLOW_WEBHOOK_URL }}
+          FOD_RELEASE_ID_DEV: ${{ secrets.FOD_RELEASE_ID_DEV }}
+          FOD_API_KEY: ${{ secrets.FOD_API_KEY }}
+          FOD_API_SECRET: ${{ secrets.FOD_API_SECRET }}
