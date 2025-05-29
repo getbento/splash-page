@@ -3,8 +3,8 @@ name: Fortify Scan - Dev
 on:
   workflow_dispatch:
   schedule:
-    # Run Wednesdays at 11:30 AM UTC
-    - cron: '30 11 * * 3'
+    # Run Wednesdays at 10:45 AM UTC
+    - cron: '45 10 * * 3'
 
 jobs:
   fortify-scan:
