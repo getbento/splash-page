@@ -1,12 +1,14 @@
-name: Fortify Scan - Dev
+name: Fortify Scan
 
 on:
   workflow_dispatch:
+  schedule:
+    # Run Mondays at 05:15 AM UTC
+    - cron: '15 05 * * 1'
 
 jobs:
   fortify-scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout bentobox-github-ci
         uses: actions/checkout@v4
@@ -17,12 +19,12 @@ jobs:
           token: ${{ secrets.GH_ACTIONS_PERSONAL_ACCESS_TOKEN }}
 
       - name: Run FOD scan action
-        uses: ./bentobox-github-ci/.github/actions/fortify-scan-dev
+        uses: ./bentobox-github-ci/.github/actions/fortify-scan-prod
         with:
           server_url: ${{ github.server_url }}
           repository: ${{ github.repository }}
           run_id: ${{ github.run_id }}
           FOD_SLACK_WORKFLOW_WEBHOOK_URL: ${{ secrets.FOD_SLACK_WORKFLOW_WEBHOOK_URL }}
-          FOD_RELEASE_ID_DEV: ${{ secrets.FOD_RELEASE_ID_DEV }}
+          FOD_RELEASE_ID: ${{ secrets.FOD_RELEASE_ID }}
           FOD_API_KEY: ${{ secrets.FOD_API_KEY }}
           FOD_API_SECRET: ${{ secrets.FOD_API_SECRET }}
