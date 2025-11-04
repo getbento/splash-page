@@ -10,21 +10,13 @@ jobs:
   fortify-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Auth App Token
-        id: app-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.GH_WORKFLOWS_AUTH_APP_ID }}
-          private-key: ${{ secrets.GH_WORKFLOWS_AUTH_PRIVATE_KEY }}  
-          owner: getbento
-
       - name: Checkout bentobox-github-ci
         uses: actions/checkout@v4
         with:
           path: bentobox-github-ci
           ref: main
           repository: getbento/bentobox-github-ci
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ secrets.GH_ACTIONS_PERSONAL_ACCESS_TOKEN }}
 
       - name: Run FOD scan action
         uses: ./bentobox-github-ci/.github/actions/fortify-scan-prod
