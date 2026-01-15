@@ -1,6 +1,8 @@
 name: Fortify Scan - Dev
 
 on:
+  schedule:
+      - cron: '15 0 1 */2 *'  # Run every 2 months on day 1 at 00:15 UTC
   workflow_dispatch:
 
 jobs:
